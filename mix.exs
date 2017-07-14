@@ -30,7 +30,8 @@ defmodule DelCam.Mixfile do
   defp deps do
     [
       {:dotenv, "~> 2.0.0"},
-      {:httpoison, "~> 0.12.0"}
+      {:httpoison, "~> 0.12.0"},
+      {:poison, "~> 3.1"}
     ]
   end
 end
