@@ -14,7 +14,7 @@ defmodule DelCam do
 
   """
   def fetch_all_cameras_exids do
-    with {:ok, response} <- HTTPoison.get("https://media.evercam.io/v1/cameras?api_id=2091d756&api_key=ea3f489a45c98eab5cc22e38db1071e8", [], hackney: []),
+    with {:ok, response} <- HTTPoison.get("https://media.evercam.io/v1/cameras?api_id=&api_key=", [], hackney: []),
          %HTTPoison.Response{status_code: 200, body: body} <- response,
          {:ok, data} <- Poison.decode(body),
          true <- is_list(data["cameras"]) do
@@ -25,7 +25,7 @@ defmodule DelCam do
   end
 
   def delete_each_camera(camera_exid) do
-    with {:ok, response} <- HTTPoison.delete("https://media.evercam.io/v1/cameras/#{camera_exid}?api_id=2091d756&api_key=ea3f489a45c98eab5cc22e38db1071e8", [], hackney: []),
+    with {:ok, response} <- HTTPoison.delete("https://media.evercam.io/v1/cameras/#{camera_exid}?api_id=&api_key=", [], hackney: []),
          %HTTPoison.Response{status_code: 200, body: body} <- response
     do
       Logger.info "camera #{camera_exid} has been deleted from your account. [body: #{body}]"
